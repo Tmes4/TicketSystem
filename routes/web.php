@@ -24,3 +24,10 @@ Auth::routes();
 
 Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::get('/events/index', [EventController::class, 'index']);
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+

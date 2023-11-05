@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
+     */ 
     public function index()
     {
-        $events = Event::all();
-
+        $events = Event::where('date', '>=', Carbon::today())->get();
         return view('events/index')
             ->with(compact('events'));
     }

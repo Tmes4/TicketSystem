@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<!-- ABBAS -->
 <div class="container">
     <div class="row">
         @foreach($events as $event)
@@ -13,10 +13,10 @@
                     <p class="card-text">{{ $event->time }}</p>
                     <p class="card-text">{{ $event->location }}</p>
                     @if(strlen($event->description) > 100)
-                        <p class="text">{{ substr($event->description, 0, 100) }} <a href="#" class="read-more-button"> Lees meer</a></p>
-                        <p class="hidden-text d-none">{{ substr($event->description, 100) }}</p>
+                    <p class="text">{{ substr($event->description, 0, 100) }} <a href="#" class="read-more-button"> Lees meer</a></p>
+                    <p class="hidden-text d-none">{{ substr($event->description, 100) }}</p>
                     @else
-                        <p class="text">{{ $event->description }}</p>
+                    <p class="text">{{ $event->description }}</p>
                     @endif
                     <a href="#" class="btn btn-primary">Reserveren</a>
                 </div>

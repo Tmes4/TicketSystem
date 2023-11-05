@@ -17,11 +17,12 @@ class EventFactory extends Factory
      */
 
     public function definition(): array
-    {
-        $date = $this->faker->dateTimeBetween('now', '+30 days');
+    {;
+        // ABBAS
+        $date = $this->faker->dateTimeBetween('-10 days', '+30 days', null);
         return [
             'title' => $this->faker->sentence(),
-            'time' => $this->faker->time(),
+            'time' => $this->faker->time('H:i', '00:30'),
             'date' => $date,
             'location' => $this->faker->address(),
             'description' =>$this->faker->paragraph(),
