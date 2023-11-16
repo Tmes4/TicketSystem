@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,12 +23,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index']);
 Route::get('/events/index', [EventController::class, 'index']);
 
 Auth::routes();
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-

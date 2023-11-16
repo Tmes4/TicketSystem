@@ -12,10 +12,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-                // ABBAS    
+                // ABBAS
         \App\Models\User::factory(10)->create();
         \App\Models\Event::factory(100)->create();
-
+        \App\Models\Role::factory()->createMany([
+            ['name' => 'klant'],
+            ['name' => 'admin'],
+        ]);;
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
