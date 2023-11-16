@@ -19,20 +19,20 @@
             </div>
         </div> -->
         @foreach($events as $event)
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <div class="card mb-5">
-                <div class="card-body">
-                    <h6 class="card-title fw-bold">{{ $event->title }}</h6>
-                    <p class="card-text">{{ $event->date }}</p>
-                    <p class="card-text">{{ $event->time }}</p>
-                    <p class="card-text">{{ $event->location }}</p>
-                    @if(strlen($event->description) > 100)
-                    <p class="text">{{ substr($event->description, 0, 100) }} <a href="#" class="read-more-button"> Lees meer</a></p>
-                    <p class="hidden-text d-none">{{ substr($event->description, 100) }}</p>
-                    @else
-                    <p class="text">{{ $event->description }}</p>
-                    @endif
-                    <a href="#" class="btn btn-primary">Reserveren</a>
+        <div class="card mb-3 px-0">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{ $event->imageUrl }}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">{{ $event->title }}</h5>
+                        <p class="card-text">{{ $event->location }}</p>
+                        <p class="card-text"><small class="text-body-secondary">{{ $event->description }}</small></p>
+                        <p class="card-text"><small class="text-body-secondary">{{ $event->time }}</small></p>
+                        <p class="card-text"><small class="text-body-secondary">{{ $event->date }}</small></p>
+                        <a href="#" class="btn btn-primary">Reserveren</a>
+                    </div>
                 </div>
             </div>
         </div>

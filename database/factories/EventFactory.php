@@ -2,9 +2,11 @@
 
 namespace Database\Factories;
 
+use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
+use Smknstd\Faker\PicsumProvider;
 
 // @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
 
@@ -19,6 +21,7 @@ class EventFactory extends Factory
     public function definition(): array
     {;
         // ABBAS
+        // $this->faker->addProvider(new PicsumProvider($this->faker));
         $date = $this->faker->dateTimeBetween('-10 days', '+30 days', null);
         return [
             'title' => $this->faker->sentence(),
@@ -26,6 +29,8 @@ class EventFactory extends Factory
             'date' => $date,
             'location' => $this->faker->address(),
             'description' =>$this->faker->paragraph(),
+            // 'image' => $this->faker->PicsumProvider(400, 300),
+            'imageUrl' => 'https://picsum.photos/seed/picsum/400/300',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
