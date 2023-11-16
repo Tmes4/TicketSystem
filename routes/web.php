@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -26,4 +27,7 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/events/index', [EventController::class, 'index']);
 
-Auth::routes();
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'show'])->name('admin.dashboard');
+});
+
