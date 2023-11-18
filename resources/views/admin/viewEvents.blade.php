@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        @foreach($events as $event)
+
+div class="container">
+    <div class="row">
+    @foreach($events as $event)
         <div class="card mb-3 px-0">
             <div class="row g-0">
                 <div class="col-md-4">
@@ -16,13 +17,12 @@
                         <p class="card-text"><small class="text-body-secondary">{{ $event->description }}</small></p>
                         <p class="card-text"><small class="text-body-secondary">{{ $event->time }}</small></p>
                         <p class="card-text"><small class="text-body-secondary">{{ $event->date }}</small></p>
-                        <a href="#" class="btn btn-primary">Reserveren</a>
+                        <a href="#" class="btn btn-primary">Bewerken</a>
+                        <a href="#" class="btn btn-danger">Verwijderen</a>
                     </div>
                 </div>
             </div>
         </div>
         @endforeach
-        
-    </div>
-</div>
+
 @endsection

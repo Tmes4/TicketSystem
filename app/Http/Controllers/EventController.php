@@ -14,7 +14,14 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::where('date', '>=', Carbon::today())->get();
-        return view('events/index')
+        return view('home')
+            ->with(compact('events'));
+    }
+
+    public function upComing() 
+    {
+        $events = Event::where('date', '>=', Carbon::today())->get();
+        return view('admin.viewEvents')
             ->with(compact('events'));
     }
 

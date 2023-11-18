@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Event;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -10,4 +11,5 @@ class AdminController extends Controller
 
         return view('admin.dashboard');
     }
+
 }
