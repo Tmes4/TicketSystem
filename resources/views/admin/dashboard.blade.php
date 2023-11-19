@@ -27,7 +27,7 @@
                     </a>
                     <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Aankomende Events</a>
+                            <a href="{{ route('admin.viewEvents') }}" class="sidebar-link">Aankomende Events</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="#" class="sidebar-link">Afgelopen Events</a>
@@ -47,7 +47,7 @@
                             <a href="#" class="sidebar-link">Admins</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link"></a>
+                            <a href="#" class="sidebar-link">Gebruikers</a>
                         </li>
                     </ul>
                 </li>

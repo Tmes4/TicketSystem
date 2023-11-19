@@ -29,5 +29,7 @@ Route::get('/events/index', [EventController::class, 'index']);
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'show'])->name('admin.dashboard');
+    Route::get('/admin/viewEvents', [AdminController::class, 'upComing'])->name('admin.viewEvents');
+
 });
 
