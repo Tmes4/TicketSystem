@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\Models\Event;
 use Illuminate\Support\Carbon;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
