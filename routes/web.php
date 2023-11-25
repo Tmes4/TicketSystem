@@ -28,6 +28,7 @@ Auth::routes();
 // Route::get('/home', [HomeController::class, 'index']);
 Route::get('/', [EventController::class, 'index']);
 Route::get('/events/show/{event}', [EventController::class, 'show'])->name('show.event');
+Route::get('/events/dashboard', [EventController::class, 'showDashboard']);
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'show'])->name('admin.dashboard');

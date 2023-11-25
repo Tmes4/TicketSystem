@@ -17,8 +17,6 @@
                         <p class="card-text"><small class="text-body-secondary">{{ $event->time }}</small></p>
                         <p class="card-text"><small class="text-body-secondary">{{ $event->date }}</small></p>
                         <!-- <p class="card-text"><small class="text-body-secondary">{{ $event->location }}</small></p> -->
-                        <a href="#" class="btn btn-primary">Bewerken</a>
-                        <a href="#" class="btn btn-danger">Verwijderen</a>
                     </div>
                 </div>
             </div>

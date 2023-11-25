@@ -74,4 +74,14 @@ class EventController extends Controller
     {
         //
     }
+
+    public function showDashboard() 
+    {
+        $events = Event::select('imageUrl')->get();
+
+        $imageUrls = $events->pluck('imageUrl');
+    
+        return view('events.dashboard')
+            ->with('imageUrls', $imageUrls);
+    }
 }
