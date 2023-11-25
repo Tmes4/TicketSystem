@@ -3,11 +3,11 @@
 
 <div class="container py-5">
     <div class="row">
-    @foreach($events as $event)
+
         <div class="card mb-3 px-0">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="{{ $event->imageUrl }}" class="" alt="...">
+                    <img src="{{ $event->imageUrl }}" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -23,6 +23,4 @@
                 </div>
             </div>
         </div>
-        @endforeach
-
 @endsection

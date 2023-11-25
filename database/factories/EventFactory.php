@@ -23,12 +23,14 @@ class EventFactory extends Factory
         // ABBAS
         // $this->faker->addProvider(new PicsumProvider($this->faker));
         $date = $this->faker->dateTimeBetween('-10 days', '+30 days', null);
+        $titleWords = explode(' ', $this->faker->sentence());
+        $title = implode(' ', array_slice($titleWords, 0, 2));
         return [
-            'title' => $this->faker->sentence(),
+            'title' =>$title,
             'time' => $this->faker->time('H:i', '00:30'),
             'date' => $date,
             'location' => $this->faker->address(),
-            'description' =>$this->faker->paragraph(),
+            'description' => $this->faker->paragraph(),
             // 'image' => $this->faker->PicsumProvider(400, 300),
             'imageUrl' => 'https://picsum.photos/seed/picsum/400/300',
             'created_at' => Carbon::now(),

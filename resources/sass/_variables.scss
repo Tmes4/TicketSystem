@@ -16,10 +16,11 @@ $line-height-base: 1.6;
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    background-image: url("https://codzsword.github.io/bootstrap-sidebar/background-image.jpg");
+
+    // background-image: url("https://codzsword.github.io/bootstrap-sidebar/background-image.jpg");
     background-repeat: no-repeat;
-    // background-position: center bottom;
-    // background-size: cover;
+    background-position: center bottom;
+    background-size: cover;
 
 }
 
@@ -139,4 +140,19 @@ main {
         width: auto;
     }
 }
+
+.container {
+    padding: 85px 0 ;
+}
+
+// dashboard
+
+.page {
+    background-color: #f1f5f9;
+    min-height: 100vh;
+    
+}
+
+// dashboard END
+
 

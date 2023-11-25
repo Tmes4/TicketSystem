@@ -10,7 +10,7 @@ class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */ 
+     */
     public function index()
     {
         $events = Event::where('date', '>=', Carbon::today())->get();
@@ -18,7 +18,7 @@ class EventController extends Controller
             ->with(compact('events'));
     }
 
-    public function upComing() 
+    public function upComing()
     {
         $events = Event::where('date', '>=', Carbon::today())->get();
         return view('admin.viewEvents')
@@ -46,7 +46,9 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        // $event = Event::where('event_id', $event->id);
+        return view('events.show')
+            ->with(compact('event'));
     }
 
     /**
