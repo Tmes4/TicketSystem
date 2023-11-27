@@ -25,12 +25,16 @@ class EventFactory extends Factory
         $date = $this->faker->dateTimeBetween('-10 days', '+30 days', null);
         $titleWords = explode(' ', $this->faker->sentence());
         $title = implode(' ', array_slice($titleWords, 0, 2));
+        $tenMultiples = range(10, 100, 10);
         return [
             'title' =>$title,
             'time' => $this->faker->time('H:i', '00:30'),
             'date' => $date,
-            'location' => $this->faker->address(),
+            'month' => $date->format('M'),
+            'day' => $date->format('l'),
+            'location' => $this->faker->city(),
             'description' => $this->faker->paragraph(),
+            'price' => $this->faker->randomElement($tenMultiples),
             // 'image' => $this->faker->PicsumProvider(400, 300),
             'imageUrl' => 'https://picsum.photos/seed/picsum/400/300',
             'created_at' => Carbon::now(),

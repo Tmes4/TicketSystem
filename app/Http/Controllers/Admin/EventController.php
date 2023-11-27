@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Event;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 
 class EventController extends Controller
 {
@@ -13,16 +13,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::where('date', '>=', Carbon::today())->get();
-        return view('home')
-            ->with(compact('events'));
-    }
-
-    public function upComing()
-    {
-        $events = Event::where('date', '>=', Carbon::today())->get();
-        return view('admin.viewEvents')
-            ->with(compact('events'));
+        //
     }
 
     /**
@@ -46,9 +37,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        // $event = Event::where('event_id', $event->id);
-        return view('events.show')
-            ->with(compact('event'));
+        //
     }
 
     /**
@@ -72,16 +61,7 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        
-    }
-
-    public function showDashboard()
-    {
-        $events = Event::select('imageUrl')->get();
-
-        $imageUrls = $events->pluck('imageUrl');
-
-        return view('events.dashboard')
-            ->with('imageUrls', $imageUrls);
+        $event->delete();
+        return redirect()->route('admin.viewEvents');
     }
 }

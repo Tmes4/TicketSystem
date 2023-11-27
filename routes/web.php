@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Admin\EventController  as AdminEventController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
@@ -33,7 +33,7 @@ Route::get('/events/dashboard', [EventController::class, 'showDashboard']);
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'show'])->name('admin.dashboard');
     Route::get('/admin/viewEvents', [AdminController::class, 'upComing'])->name('admin.viewEvents');
-
+    Route::delete('/admin/viewEvents/{event}', [AdminEventController::class, 'destroy'])->name('delete.event');
 });
 
 // Route::middleware(['guest'])->get('/', function () {

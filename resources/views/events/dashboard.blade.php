@@ -38,8 +38,9 @@
         </ul>
     </div>
     <div class="content D">
-        <div class="head bg-white p-1 d-flex justify-content-between align-items-center">
+        <div class="head bg-white py-1 px-2 d-flex justify-content-between align-items-center">
             <div class="search position-relative">
+                <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
                 <input class="p-1" type="search" placeholder="Type A Keyword">
             </div>
             <div class="icons d-flex align-items-center">
@@ -50,6 +51,48 @@
             </div>
         </div>
         <h1 class="position-relative">Dashboard</h1>
+        <div class="row row-cols-1 row-cols-md-3 g-3 mx-3">
+            <div class="col">
+                <div class="card">
+                    <!-- <img src="..." class="card-img-top" alt="..."> -->
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Welcome</h5>
+                        <p class="small"><!-- userName -->Last Name</p>
+                        <div class="row text-center">
+                            <div class="col">FULL NAME <span class="d-block">Admin</span></div>
+                            <div class="col">Events <span class="d-block">100</span></div>
+
+                            <div class="col">FULL NAME <span class="d-block">Admin</span></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

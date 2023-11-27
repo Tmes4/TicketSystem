@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->date('date');
+            $table->string('month');
+            $table->string('day');
             $table->time('time');
+            $table->string('price');
             $table->string('location');
             $table->text('description');
             $table->text('imageUrl');

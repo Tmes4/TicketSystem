@@ -16,7 +16,6 @@ $line-height-base: 1.6;
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-
     // background-image: url("https://codzsword.github.io/bootstrap-sidebar/background-image.jpg");
     background-repeat: no-repeat;
     background-position: center bottom;
@@ -48,6 +47,7 @@ li {
 }
 
 #sidebar {
+    background-color: black;
     max-width: 264px;
     min-width: 264px;
     transition: all 0.35s ease-in-out;
@@ -267,7 +267,7 @@ main {
 .head .search input:focus {
     outline-color: red; // TEST
     width: 200px;
-    
+
 }
 
 .head .search input:focus::placeholder {
@@ -313,6 +313,36 @@ main {
     background-color: black;
     width: 40px;
 }
+
+.wrapper-D {
+    grid-template-columns: repeat(auto-fill, (minmax(450px, 1fr)));
+}
 // Content section END
 
 // dashboard END
+
+
+.transparent-img {
+    height: 30vh;
+    opacity: 0.3;
+}
+
+.title-text h3 {
+    margin: 0px;
+    padding-bottom: 8px;
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-family:sans-serif
+}
+
+.title-text h3:before {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    display: block;
+    width: 80px;
+    border-bottom: 4px solid currentcolor;
+    content: "";
+}
