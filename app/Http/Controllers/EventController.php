@@ -13,7 +13,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::where('date', '>=', Carbon::today())->get();
+        $events = Event::where('date', '>=', Carbon::today())->orderby("date")->get();
         return view('home')
             ->with(compact('events'));
     }
@@ -56,7 +56,7 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        
     }
 
     /**

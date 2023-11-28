@@ -12,6 +12,17 @@ class Event extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    // protected $fillable = [
+    //     'title',
+    //     'date',
+    //     'time',
+    //     'location',
+    //     'description',
+    //     'imgageUrl',
+    //     'price',
+
+    // ];
+
     public function reservations()
     {
         return $this->hasMany(Reservation::class);
@@ -22,9 +33,9 @@ class Event extends Model
         return substr($value, 0, 5);
     }
 
-public function getDateAttribute($value) 
-{
-    return date('d-m-Y', strtotime($value));    
-}
+    public function getDateAttribute($value)
+    {
+        return date('d-m-Y', strtotime($value));
+    }
 
 }

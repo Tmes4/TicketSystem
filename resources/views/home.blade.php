@@ -25,7 +25,7 @@
         </div> -->
 
         <div class="card my-3 " style="width: 25rem; padding: 1px;">
-            <img src="{{ $event->imageUrl }}" class="card-img-top" alt="...">
+            <img src="{{ $event->imageUrl }}?{{ $event->id }}" class="card-img-top" alt="...">
             <div class="card-body">
                 <div class="d-flex align-items-center ">
                     <h6 class="card-title fw-bold d-flex flex-column mb-0">{{ strtoupper(substr($event->month, 0, 3)) }} <span class="fs-3">{{ substr($event->date, 0,2) }}</span></h6>

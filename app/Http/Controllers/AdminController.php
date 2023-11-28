@@ -12,10 +12,4 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function upComing()
-    {
-        $events = Event::where('date', '>=', Carbon::today())->get();
-        return view('admin.viewEvents')
-            ->with(compact('events'));
-    }
 }

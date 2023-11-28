@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->date('date');
-            $table->string('month');
-            $table->string('day');
+            $table->string('month')->nullable();
+            $table->string('day')->nullable();
             $table->time('time');
             $table->string('price');
             $table->string('location');
             $table->text('description');
-            $table->text('imageUrl');
+            $table->text('imageUrl')->nullable();
             $table->timestamps();
         });
     }

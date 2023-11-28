@@ -38,7 +38,7 @@ class EventFactory extends Factory
             // 'image' => $this->faker->PicsumProvider(400, 300),
             'imageUrl' => 'https://picsum.photos/seed/picsum/400/300',
             'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),  
         ];
     }
 

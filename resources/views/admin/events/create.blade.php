@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.App')
+
 @section('content')
 <div class="wrapper">
+    <!-- Sidebar -->
     <aside id="sidebar">
         <div class="h-100">
             <div class="sidebar-logo">
@@ -94,38 +96,55 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
         </nav>
-        <div class="container py-5">
-            <a href="#" class="btn btn-success mb-3 py-2 px-5">TOEVOEGEN</a>
-            <div class="row">
-                @foreach($events as $event)
-                <div class="card mb-3 px-0">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="{{ $event->imageUrl }}" class="" alt="...">
+        <div class="container pt-5" style="width:960px ;">
+            <form action="{{ route('save.event') }}" method="POST" style="min-width: 320px;" enctype="multipart/form-data">
+
+                <h4>Nieuw Event</h4>
+
+                <div class="form-group">
+                    <label for="title">Titel</label>
+                    <input type="text" id="title" name="title" class="form-control" value="">
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Locatie</label>
+                    <input type="text" id="location" name="location" class="form-control" value="">
+                </div>
+
+                <div class="form-group">
+                    <label for="time">Tijd</label>
+                    <input type="time" id="time" name="time" class="form-control" value="">
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Datum</label>
+                    <input type="date" id="date" name="date" class="form-control" value="">
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Prijs</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">&euro;</div>
                         </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold">{{ $event->title }}</h5>
-                                <p class="card-text">{{ $event->location }}</p>
-                                <p class="card-text"><small class="text-body-secondary">{{ $event->description }}</small></p>
-                                <p class="card-text"><small class="text-body-secondary">{{ $event->time }}</small></p>
-                                <p class="card-text"><small class="text-body-secondary">{{ $event->date }}</small></p>
-                                <!-- <p class="card-text"><small class="text-body-secondary">{{ $event->location }}</small></p> -->
-                                <div class="d-flex justify-content-between">
-                                    <a href="#" class="btn btn-primary">Bewerken</a>
-                                    <form action="{{ route('delete.event', $event) }}" method="POST">
-                                        <button type="submit" class="form-control btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                    </form>
-                                </div>
-                                <!-- <a href="#" class="btn btn-danger">Verwijderen</a> -->
-                            </div>
-                        </div>
+                        <input type="number" min="0" id="price" name="price" class="form-control" value="">
                     </div>
                 </div>
-                @endforeach
-            </div>
+
+                <div class="form-group">
+                    <input type="file" id="imageUrl" name="imageUrl" accept="image/png, image/jpeg, image/gif">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Beschrijving</label>
+                    <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
+                </div>
+
+                <button type="submit" class="form-control btn btn-primary my-2">Opslaan</button>
+                {{ csrf_field() }}
+            </form>
         </div>
     </div>
-    @endsection
+</div>
+
+@endsection
