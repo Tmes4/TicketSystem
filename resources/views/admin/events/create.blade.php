@@ -132,8 +132,9 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="file" id="imageUrl" name="imageUrl" accept="image/png, image/jpeg, image/gif">
-                </div>
+                    <label for="image"></label>
+                    <input type="file" id="image" name="image" accept="image/png, image/jpeg, image/gif">
+                </div>  
 
                 <div class="form-group">
                     <label for="description">Beschrijving</label>

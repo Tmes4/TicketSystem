@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
+            $table->string('type')->default('Standard');
             $table->decimal('price', 8, 2);
+            $table->boolean('is_scanned')->default(false);
             $table->unsignedBigInteger('reservations_id');
             $table->foreign('reservations_id')->references('id')->on('reservations')->onDelete('cascade');
         });

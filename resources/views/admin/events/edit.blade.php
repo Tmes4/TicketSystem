@@ -134,7 +134,8 @@
 
                 <div class="form-group">
                     <label for="imageUrl">Foto</label>
-                    <input type="file" id="imageUrl" name="imageUrl" accept="image/png, image/jpeg, image/gif">
+                    <img class="card-img-top" src="{{ asset('$event->imageUrl') }}" alt="Card image">
+                    <!-- <input type="file" id="imageUrl" name="imageUrl" accept="image/png, image/jpeg, image/gif"> -->
                 </div>
 
                 <div class="form-group">

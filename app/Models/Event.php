@@ -12,16 +12,16 @@ class Event extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    // protected $fillable = [
-    //     'title',
-    //     'date',
-    //     'time',
-    //     'location',
-    //     'description',
-    //     'imgageUrl',
-    //     'price',
+    protected $fillable = [
+        'title',
+        'date',
+        'time',
+        'location',
+        'description',
+        'imgageUrl',
+        'price',
 
-    // ];
+    ];
 
     public function reservations()
     {

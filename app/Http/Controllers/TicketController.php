@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,10 @@ class TicketController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Event $event)
     {
-        //
+        return view('tickets.index')
+            ->with(compact('event'));
     }
 
     /**
@@ -20,7 +22,6 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -28,7 +29,26 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Valideer het formuliergegevens
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'email' => 'required|email|max:255',
+        //     'ticket_quantity' => 'required|integer|min:1',
+        //     'ticket_type' => 'required|in:standard,vip',
+        // ]);
+        $this->validate(request(),[
+            'ticket_quantity' => 'required|numeric|min:1',
+            'ticket_type' => 'required|in:standard,vip'
+        ]);
+
+        $event = Event::Where('price');
+        $ticket = new Ticket();
+
+        $ticket->price = $event->price * $request->ticket_quantity;
+        $ticket->type = $request->ticket_type;
+
+        $ticket->save();
+        return redirect()->route('home', $ticket, $event);
     }
 
     /**

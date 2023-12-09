@@ -60,4 +60,9 @@ class User extends Authenticatable
         return $this->roles()->where('name', 'admin')->exists();
     }
 
+    public function isLoggedInUser()
+    {
+        // Voeg hier eventuele extra voorwaarden toe voor het controleren of een gebruiker is ingelogd
+        return true; // Of voer hier de werkelijke controle uit
+    }
 }

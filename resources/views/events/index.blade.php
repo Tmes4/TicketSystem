@@ -8,7 +8,7 @@
         <div class="card mb-3 px-0">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="{{ $event->imageUrl }}" class="img-fluid rounded-start" alt="...">
+                <img class="custom-img-class" src="{{ asset($event->imageUrl) }}" alt="" width="400" height="300">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
