@@ -3,6 +3,7 @@ use App\Http\Controllers\Admin\EventController  as AdminEventController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TicketController;
 use App\Models\Event;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 // Route::get('/home', [HomeController::class, 'index']);
-Route::get('/', [EventController::class, 'index']);
+Route::get('/', [EventController::class, 'index'])->name('home');
 Route::get('/events/show/{event}', [EventController::class, 'show'])->name('show.event');
 Route::get('/events/dashboard', [EventController::class, 'showDashboard']);
 
@@ -42,8 +43,10 @@ Route::middleware(['auth' => 'admin'])->group(function () {
 });
 
 Route::middleware(['middleware' => 'auth'])->group(function () {
-    Route::get('/tickets/index/{event}', [TicketController::class, 'index'])->name('ticket.create');
-    Route::post('/tickets/create', [TicketController::class, 'store'])->name('ticket.store');
+    Route::get('/tickets/index/{event}', [ReservationController::class, 'index'])->name('new.reservation');
+    Route::post('/tickets/create/{event}', [ReservationController::class, 'store'])->name('ticket.store');
+    Route::get('/tickets/confirm', [TicketController::class, 'index'])->name('ticket.confirm');
+
 });
 
 // Route::middleware(['guest'])->get('/', function () {

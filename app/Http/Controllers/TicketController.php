@@ -11,10 +11,11 @@ class TicketController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Event $event)
+    public function index()
     {
-        return view('tickets.index')
-            ->with(compact('event'));
+        $reservedTickets = Ticket::where('reservation_id');
+        return view('tickets.confirm')
+            ->with(compact('reservedTickets'));
     }
 
     /**
@@ -38,17 +39,15 @@ class TicketController extends Controller
         // ]);
         $this->validate(request(),[
             'ticket_quantity' => 'required|numeric|min:1',
-            'ticket_type' => 'required|in:standard,vip'
         ]);
 
         $event = Event::Where('price');
         $ticket = new Ticket();
 
-        $ticket->price = $event->price * $request->ticket_quantity;
-        $ticket->type = $request->ticket_type;
+        $ticket->price = $request->ticket_quantity;
 
         $ticket->save();
-        return redirect()->route('home', $ticket, $event);
+        return redirect()->route('home', $ticket);
     }
 
     /**

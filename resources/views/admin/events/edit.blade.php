@@ -100,7 +100,7 @@
             <form action="{{ route('update.event', $event) }}" method="POST" style="min-width: 320px;" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <h4>Nieuw Event</h4>
+                <h4>Bewerk Event</h4>
 
                 <div class="form-group">
                     <label for="title">Titel</label>
@@ -133,10 +133,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="imageUrl">Foto</label>
-                    <img class="card-img-top" src="{{ asset('$event->imageUrl') }}" alt="Card image">
-                    <!-- <input type="file" id="imageUrl" name="imageUrl" accept="image/png, image/jpeg, image/gif"> -->
-                </div>
+                    <label for="image"></label>
+                    <input type="file" id="image" name="image" accept="image/png, image/jpeg, image/gif">
+                </div>  
+
 
                 <div class="form-group">
                     <label for="description">Beschrijving</label>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Reservation;
+use App\Models\ticket;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -10,9 +12,10 @@ class ReservationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Event $event)
     {
-        //
+        return view('tickets.index')
+            ->with(compact('event'));
     }
 
     /**
@@ -20,16 +23,36 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Event $event)
     {
+        $this->validate($request, [
+            'ticketQuantity' => 'required|numeric|min:1',
+        ]);
+    
+        $reservation = new Reservation();
+        $reservation->user_id = auth()->user()->id;
+        $reservation->event_id = $event->id;
+        $reservation->save();
+    
+        $ticketQuantity = $request->input('ticketQuantity');
+    
+        for ($i = 0; $i < $ticketQuantity; $i++) {
+            $ticket = new Ticket();
+            $ticket->price = $event->price;
+            $ticket->reservations_id = $reservation->id;
+            $ticket->save();
+        }
         
+    
+        return redirect()->route('ticket.confirm')->with('ticketQuantity', $ticketQuantity);
     }
+
+
 
     /**
      * Display the specified resource.

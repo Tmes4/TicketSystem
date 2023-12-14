@@ -34,7 +34,7 @@
 
                 <div class="col-md-2">
                     <div class="card-body ">
-                    <a href="{{ route('ticket.create', $event->id) }}" class="btn btn-primary">Tickets</a>
+                    <a href="{{ route('new.reservation', $event->id) }}" class="btn btn-primary">Tickets</a>
                     </div>
                 </div>
             </div>
