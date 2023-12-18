@@ -427,3 +427,19 @@ main {
     margin-top: 15px;
     color: #333;
 }
+
+.custom-list-item {
+    background-color: #1178df;
+    /* Aangepaste achtergrondkleur */
+    border-color: #0a7bec;
+    /* Aangepaste randkleur */
+    margin-bottom: 10px;
+    /* Aangepaste ondermarge */
+}
+
+.custom-list-item .badge {
+    margin-left: 10px;
+    /* Aangepaste marge voor de badge */
+    font-size: 1.2rem;
+    /* Aangepaste lettergrootte voor de badge */
+}

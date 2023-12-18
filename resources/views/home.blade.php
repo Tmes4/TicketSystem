@@ -3,6 +3,11 @@
 @section('content')
 <!-- <img class="bg-img" src="" alt=""> -->
 <div class="container">
+    @if(session('error'))
+        <div class="alert alert-danger" >
+            {{ session('error') }}
+        </div>
+    @endif
     <h1 class="fw-bold">Upcoming Events </h1>
     <div class="row justify-content-between">
         @foreach($events as $event)

@@ -36,9 +36,10 @@ class EventFactory extends Factory
             'description' => $this->faker->paragraph(),
             'price' => $this->faker->randomElement($tenMultiples),
             // 'image' => $this->faker->PicsumProvider(400, 300),
-            'imageUrl' => 'https://picsum.photos/seed/picsum/400/300',
+            'imageUrl' => 'https://picsum.photos/400/300',
+            'capacity' => $this->faker->randomElement(($tenMultiples)),
             'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),  
+            'updated_at' => Carbon::now(),
         ];
     }
 

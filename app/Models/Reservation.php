@@ -9,7 +9,7 @@ class reservation extends Model
 {
     public function event()
     {
-        return $this->belongsTo(Eevnt::class);
+        return $this->belongsTo(Event::class);
     }
 
     public function user()
@@ -19,6 +19,6 @@ class reservation extends Model
 
     public function tickets()
     {
-        return $this->hasMany(Ticket::class);
+        return $this->hasMany(Ticket::class, 'reservations_id');
     }
 }

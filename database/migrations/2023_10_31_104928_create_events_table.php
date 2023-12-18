@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('location');
             $table->text('description');
             $table->text('imageUrl');
+            $table->integer('capacity');
             $table->timestamps();
         });
     }

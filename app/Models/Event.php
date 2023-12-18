@@ -20,7 +20,8 @@ class Event extends Model
         'description',
         'imageUrl',
         'price',
-
+        'capacity',
+        'max_tickets_per_user'
     ];
 
     public function reservations()
