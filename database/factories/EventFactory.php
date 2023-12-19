@@ -20,7 +20,6 @@ class EventFactory extends Factory
 
     public function definition(): array
     {;
-        // ABBAS
         // $this->faker->addProvider(new PicsumProvider($this->faker));
         $date = $this->faker->dateTimeBetween('-10 days', '+30 days', null);
         $titleWords = explode(' ', $this->faker->sentence());

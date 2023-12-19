@@ -53,9 +53,9 @@ class TicketController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ticket $ticket)
+    public function show(ticket $ticket, Event $event)
     {
-        //
+        
     }
 
     /**
@@ -80,5 +80,13 @@ class TicketController extends Controller
     public function destroy(ticket $ticket)
     {
         //
+    }
+
+    public function download()
+    {
+        // Logica om tickets te downloaden
+
+        // Bijvoorbeeld, een eenvoudige respons
+        return response()->download(public_path('path/to/tickets.zip'));
     }
 }

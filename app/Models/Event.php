@@ -39,4 +39,11 @@ class Event extends Model
         return date('d-m-Y', strtotime($value));
     }
 
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
+    
+
 }

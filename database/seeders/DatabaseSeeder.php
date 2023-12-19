@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Role;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -19,14 +20,14 @@ class DatabaseSeeder extends Seeder
             ['name' => 'klant'],
         ]);;
         $adminUser = User::factory()->create([
-            'name' => 'Test-1', 'email' => 'test@test.nl'
+            'name' => 'Test-1',
+            'email' => 'test@test.nl'
         ]);
 
         $adminRole = Role::where('name', 'admin')->first();
         $adminUser->roles()->attach($adminRole);
-        // \App\Models\User::factory()->create(['name' => 'Test-1', 'email' => 'test@test.nl']);
-        \App\Models\User::factory()->create(['name' => 'Test-2', 'email' => 'test-2@test.nl']);
-        \App\Models\User::factory(10)->create();
-        \App\Models\Event::factory(100)->create();
+        User::factory()->create(['name' => 'Test-2', 'email' => 'test-2@test.nl']);
+        User::factory(10)->create();
+        Event::factory(100)->create();
     }
 }

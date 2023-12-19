@@ -81,9 +81,41 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(reservation $reservation)
+    public function show(Reservation $reservation)
     {
-        //
+        // $user = Auth::user();
+        $user = User::with('reservations')->find(auth()->user()->id);
+
+        $historicalReservations = $user->reservations()
+            ->whereHas('tickets', function ($ticketQuery) {
+                $ticketQuery->where('is_scanned', 1);
+            })
+            ->whereHas('event', function ($eventQuery) {
+                $eventQuery->where('date', '<', now());
+            })
+            ->get();
+
+        $expiredReservations = $user->reservations()
+            ->whereHas('tickets', function ($ticketQuery) {
+                $ticketQuery->where('is_scanned', 0);
+            })
+            ->whereHas('event', function ($eventQuery) {
+                $eventQuery->where('date', '<', now());
+            })
+            ->get();
+
+            $futureReservations = $user->reservations()
+            ->whereHas('tickets', function ($ticketQuery) {
+                $ticketQuery->where('is_scanned', 0);
+            })
+            ->whereHas('event', function ($eventQuery) {
+                $eventQuery->where('date', '>', now());
+            })
+            ->get();
+
+        return view('reservations.index', compact('historicalReservations', 'expiredReservations', 'futureReservations'));
+
+
     }
 
     /**

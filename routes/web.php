@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Admin\EventController  as AdminEventController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
@@ -34,24 +35,24 @@ Route::get('/events/dashboard', [EventController::class, 'showDashboard']);
 
 Route::middleware(['auth' => 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'show'])->name('admin.dashboard');
-    Route::get('/admin/events/viewEvents', [AdminEventController    ::class, 'upComing'])->name('admin.viewEvents');
+    Route::get('/admin/events/viewEvents', [AdminEventController::class, 'upComing'])->name('admin.viewEvents');
     Route::get('/admin/events/create', [AdminEventController::class, 'create'])->name('create.event');
     Route::post('/admin/events/create', [AdminEventController::class, 'store'])->name('save.event');
     Route::get('/admin/events/{event}/edit', [AdminEventController::class, 'edit'])->name('edit.event');
-    Route::PUT  ('/admin/events/{event}', [AdminEventController::class, 'update'])->name('update.event');
+    Route::PUT('/admin/events/{event}', [AdminEventController::class, 'update'])->name('update.event');
     Route::delete('/admin/viewEvents/{event}', [AdminEventController::class, 'destroy'])->name('delete.event');
 });
 
 Route::middleware(['middleware' => 'auth'])->group(function () {
     Route::get('/tickets/index/{event}', [ReservationController::class, 'index'])->name('new.reservation');
+    Route::get('/reservations/index', [ReservationController::class, 'show'])->name('show.reservations');
     Route::post('/tickets/create/{event}', [ReservationController::class, 'store'])->name('ticket.store');
     Route::get('/tickets/confirm', [TicketController::class, 'index'])->name('ticket.confirm');
+    Route::get('/tickets/{event}', [TicketController::class, 'show'])->name('ticket.show');
 
+    Route::get('/download-tickets', [TicketController::class, 'download'])->name('download.tickets');
 });
 
 // Route::middleware(['guest'])->get('/', function () {
 //     return view('home');
 // })->name('home');
-
-
-
