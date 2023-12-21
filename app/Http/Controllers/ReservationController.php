@@ -18,6 +18,7 @@ class ReservationController extends Controller
      */
     public function index(Event $event)
     {
+        // $event = Event::all();
         return view('tickets.index')
             ->with(compact('event'));
     }
@@ -66,7 +67,7 @@ class ReservationController extends Controller
                 return redirect()->route('home')->with('error', 'Het evenement heeft niet genoeg capaciteit voor de geselecteerde tickets.');
             }
 
-            // Mail::to(auth()->user()->email)->send(new ReservationConfirmation($reservation, $event));
+            Mail::to(auth()->user()->email)->send(new ReservationConfirmation($reservation, $event));
 
             session()->put('reservedTickets', $reservedTickets);
 
@@ -141,4 +142,6 @@ class ReservationController extends Controller
     {
         //
     }
+
+    
 }

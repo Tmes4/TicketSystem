@@ -53,6 +53,8 @@ Route::middleware(['middleware' => 'auth'])->group(function () {
     Route::get('/download-tickets', [TicketController::class, 'download'])->name('download.tickets');
 });
 
+Route::get('/generate-pdf', 'PDFController@generate');
+
 // Route::middleware(['guest'])->get('/', function () {
 //     return view('home');
 // })->name('home');

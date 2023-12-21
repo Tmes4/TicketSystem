@@ -7,6 +7,9 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Role;
+use App\Models\Reservation;
+use App\Models\Ticket;
+// use PHPUnit\Framework\Attributes\Ticket;
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,5 +32,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create(['name' => 'Test-2', 'email' => 'test-2@test.nl']);
         User::factory(10)->create();
         Event::factory(100)->create();
+        // Reservation::factory(10)->create();
+        Ticket::factory(50)->create();
     }
 }
