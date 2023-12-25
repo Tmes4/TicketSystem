@@ -446,70 +446,141 @@ main {
 
 /* public/css/reservations.css */
 
-.reservations-view {
-    max-width: 800px;
-    margin: 0 auto;
+.header-reservations {
+    background-color: #3498db;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
 }
 
-.reservations-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+.reservation-main {
+    margin: 20px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.reservations-table th,
-.reservations-table td {
-    border: 1px solid #e2e8f0;
-    padding: 12px;
-    text-align: left;
+.reservation-main h1 {
+    font-size: 2em;
 }
 
-.reservations-table th {
-    background-color: #4299e1;
-    color: #ffffff;
+.reservation-main h2 {
+    font-size: 1.5em;
+    margin-top: 30px;
+    color: #3498db;
 }
 
-.reservations-table tr:nth-child(even) {
-    background-color: #f7fafc;
+.reservation-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.action-buttons {
+.reservation {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.past-reservation {
+    border: 2px solid #ddd;
+}
+
+.future-reservation {
+    border: 2px solid #4caf50;
+}
+
+.reservation:hover {
+    transform: scale(1.05);
+}
+
+.reservation h3 {
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+.reservation p {
+    margin: 8px 0;
+}
+
+.check {
+    color: #4caf50;
+    font-size: 24px;
     margin-top: 10px;
 }
 
-.action-buttons button {
-    padding: 10px 16px;
-    margin-right: 10px;
-    background-color: #2b6cb0;
-    color: #ffffff;
-    border: none;
+.scanned .check {
+    display: block;
+}
+
+.check {
+    display: none;
+}
+
+// EVENT ADMIN START
+
+.event-content {
+    height: auto;
+}
+
+.slide-buttons {
+    display: grid;
+    gap: 2px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.custom-btn {
+    /* Standaard achtergrondkleur */
+    color: #424649;
+    /* Tekstkleur */
+    padding: 6px 48px;
+    text-align: center;
+    text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    border: 2px solid #424649;
+    /* Randstijl */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Overgangen */
 }
 
-.action-buttons button:hover {
-    background-color: #1a4b8d;
+.custom-btn:hover {
+    background-color: #424649;
+    /* Achtergrondkleur bij hover */
+    color: #fff;
+    /* Tekstkleur bij hover */
 }
 
-.reservations-table .historical {
-    background-color: #a0aec0;
+.upcoming-btn.active,
+.pass-btn.active {
+    background-color: #424649;
+    /* Achtergrondkleur wanneer actief */
+    color: #fff;
+    /* Tekstkleur wanneer actief */
 }
 
-.reservations-table .expired {
-    background-color: #fc8181;
-    color: #ffffff;
+/* Animatie voor achtergrondkleurovergang */
+@keyframes backgroundColorChange {
+    0% {
+        background-color: #fff;
+    }
+
+    100% {
+        background-color: #424649;
+    }
 }
 
-.reservations-table .future {
-    background-color: #90cdf4;
+/* Voeg de animatie toe aan de actieve klasse */
+.upcoming-btn.active,
+.pass-btn.active {
+    animation: backgroundColorChange 0.5s ease;
 }
 
-.reservations-table .scanned {
-    color: #2b6cb0;
-    font-weight: bold;
-}
-
-.reservations-table .not-scanned {
-    color: #c53030;
-    font-weight: bold;
+.scrollable-view {
+    max-height: 100vh; /* Pas dit aan op basis van de gewenste hoogte voor de scrollbare weergave */
+    overflow-y: auto;
+    padding-right: 10px; /* Voeg wat ruimte aan de rechterkant van de scroller toe */
+    /* Je kunt ook padding-left, padding-top, of padding-bottom toevoegen, afhankelijk van je ontwerpbehoeften */
 }

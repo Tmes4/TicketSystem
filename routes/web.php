@@ -35,7 +35,9 @@ Route::get('/events/dashboard', [EventController::class, 'showDashboard']);
 
 Route::middleware(['auth' => 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'show'])->name('admin.dashboard');
-    Route::get('/admin/events/viewEvents', [AdminEventController::class, 'upComing'])->name('admin.viewEvents');
+    Route::get('/admin/events/viewEvents', [AdminEventController::class, 'index'])->name('admin.viewEvents');
+    Route::get('/get-upcoming-events', [AdminEventController::class, 'getUpcomingEvents'])->name('getUpcomingEvents');
+    Route::get('/get-pass-events', [AdminEventController::class, 'getPassEvents'])->name('getPassEvents');
     Route::get('/admin/events/create', [AdminEventController::class, 'create'])->name('create.event');
     Route::post('/admin/events/create', [AdminEventController::class, 'store'])->name('save.event');
     Route::get('/admin/events/{event}/edit', [AdminEventController::class, 'edit'])->name('edit.event');

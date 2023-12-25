@@ -82,7 +82,7 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Reservation $reservation)
+    public function show(Reservation $reservation,  $view = 'history')
     {
         // $user = Auth::user();
         $user = User::with('reservations')->find(auth()->user()->id);
@@ -105,7 +105,7 @@ class ReservationController extends Controller
             })
             ->get();
 
-            $futureReservations = $user->reservations()
+        $futureReservations = $user->reservations()
             ->whereHas('tickets', function ($ticketQuery) {
                 $ticketQuery->where('is_scanned', 0);
             })
@@ -114,9 +114,7 @@ class ReservationController extends Controller
             })
             ->get();
 
-        return view('reservations.index', compact('historicalReservations', 'expiredReservations', 'futureReservations'));
-
-
+        return view('reservations.index', compact('historicalReservations', 'expiredReservations', 'futureReservations', 'view'));
     }
 
     /**
@@ -142,6 +140,4 @@ class ReservationController extends Controller
     {
         //
     }
-
-    
 }

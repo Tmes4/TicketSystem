@@ -1,4 +1,4 @@
-@if($reservations->count() > 0)
+<!-- @if($reservations->count() > 0)
 <ul class="list-group">
     @foreach($reservations as $reservation)
     <li class="list-group-item">
@@ -11,4 +11,15 @@
 </ul>
 @else
 <p>Geen reserveringen gevonden.</p>
+@endif -->
+
+@if($reservations->count() > 0)
+<div class="reservation past-reservation scanned">
+    <h3>{{ $reservation->event->title }}</h3>
+    <p>{{ $reservation->event->title }}</p>
+    <p>{{ $reservation->event->date }}</p>
+    <span class="check">{{ $reservation->is_scanned ? '&#10004;' : '' }}</span>
+</div>
+@else
+<p>geen reserveringen gevonden.</p>
 @endif

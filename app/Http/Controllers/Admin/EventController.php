@@ -13,9 +13,27 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Event $event)
+    public function index()
     {
+        $events = Event::all();
+        $upComingEvents = Event::where('date', '>=', Carbon::today())->orderby("date")->get();
+        $passEvents = Event::where('date', '<', Carbon::today())->orderby("date")->get();
+        return view('admin.events.viewEvents', compact('upComingEvents', 'passEvents', 'events'));
     }
+
+    public function getUpcomingEvents()
+    {
+        $upcomingEvents = Event::where('date', '>=', Carbon::today())->orderby("date")->get();
+        return response()->json(view('admin.events.partials.event-list', ['events' => $upcomingEvents])->render());
+    }
+
+    public function getPassEvents()
+    {
+        $passEvents = Event::where('date', '<', Carbon::today())->orderby("date")->get();
+        return response()->json(view('admin.events.partials.event-list', ['events' => $passEvents])->render());
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -30,36 +48,6 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-            // $validatedData = $request->validate([
-            //     'title' => 'required|max:255',
-            //     'location' => 'required|max:255',
-            //     'time' => 'required',
-            //     'date' => 'required|date',
-            //     'price' => 'required|numeric',
-            //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            //     'description' => 'required',
-            // ]);
-        
-            // if ($request->hasFile('image')) {
-            //     $image = $request->file('image');
-            //     $imageName = time() . '.' . $image->getClientOriginalExtension();
-            //     $image->storeAs('public/images', $imageName);
-            //     $imageUrl = asset('storage/images/' . $imageName);
-            // }
-        
-            // $event = new Event([
-            //     'title' => $validatedData['title'],
-            //     'location' => $validatedData['location'],
-            //     'time' => $validatedData['time'],
-            //     'date' => $validatedData['date'],
-            //     'price' => $validatedData['price'],
-            //     'imageUrl' => $imageUrl ?? '',
-            //     'description' => $validatedData['description'],
-            // ]);
-        
-            // Rest van je code hieronder
-        
-        
         $this->validate(request(), [
             'title' => 'required',
             'location' => 'required',
