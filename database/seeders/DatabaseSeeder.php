@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test-1',
             'email' => 'test@test.nl'
         ]);
+        
 
         $adminRole = Role::where('name', 'admin')->first();
         $adminUser->roles()->attach($adminRole);

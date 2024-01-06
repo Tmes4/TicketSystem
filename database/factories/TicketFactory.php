@@ -23,11 +23,12 @@ class TicketFactory extends Factory
     public function definition(): array
     {
         $event = Event::inRandomOrder()->first(); // Haal een willekeurig evenement op
-
+        $eventDate = $event->date;
+        $isFutureEvent = now()->lt($eventDate);
         return [
             'type' => $this->faker->randomElement(['Standard', 'VIP', 'Premium']),
             'price' => $event->price,
-            'is_scanned' => $this->faker->boolean, // Gebruik de boolean methode om true of false te genereren
+            'is_scanned' => $isFutureEvent ? false : $this->faker->boolean, // Gebruik de boolean methode om true of false te genereren
             'reservations_id' => function () {
                 return \App\Models\Reservation::factory()->create()->id;
             },

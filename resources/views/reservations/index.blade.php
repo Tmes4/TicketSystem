@@ -1,129 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-            color: #333;
-        }
-
-        header {
-            background-color: #3498db;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        .container {
-            display: flex;
-            max-width: 1200px;
-            margin: 20px auto;
-        }
-
-        .sidebar {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            width: 200px;
-        }
-
-        .main-content {
-            flex: 1;
-            padding: 20px;
-            background-color: white;
-        }
-
-        h1 {
-            font-size: 2em;
-            color: #3498db;
-        }
-
-        h2 {
-            font-size: 1.5em;
-            margin-top: 30px;
-            color: #3498db;
-        }
-
-        .reservation-container {
-            display: flex;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .reservation {
-            background-color: #ecf0f1;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .past-reservation {
-            border: 2px solid #bdc3c7;
-        }
-
-        .future-reservation {
-            border: 2px solid #2ecc71;
-        }
-
-        .reservation:hover {
-            transform: scale(1.05);
-        }
-
-        .reservation h3 {
-            color: #3498db;
-            margin-bottom: 10px;
-        }
-
-        .reservation p {
-            margin: 8px 0;
-        }
-
-        .check {
-            color: #2ecc71;
-            font-size: 24px;
-            margin-top: 10px;
-        }
-
-        .scanned .check {
-            display: block;
-        }
-
-        .check {
-            display: none;
-        }
-    </style>
-</head>
-
-<body>
-
-    <header>
-        <h1>Reserveringen</h1>
-    </header>
-
-    <div class="container">
-        <div class="sidebar">
-            <h2>Sidebar</h2>
-            <!-- Voeg hier je zijbalkinhoud toe -->
-        </div>
-
-        <div class="main-content">
-            <!-- Voeg hier je hoofdinhoud toe -->
-            <h2>Hoofdinhoud</h2>
-            <div class="reservation-container">
-                <!-- Voeg hier je reserveringen toe -->
+@section('content')
+<div class="">
+    <div class="container py-4">
+        <div class="d-flex align-items-center;" style="height: 10vh;">
+            <div class="d-flex justify-content-between align-items-center w-100 mx-auto pb-3" style="max-width: 1320px;">
+                <div class="align-items-center">
+                    @if ($firstFutureReservation)
+                    <h4 class="fw-bold mb-0">{{ $firstFutureReservation->event->title }}</h4>
+                    <span class="text-center">
+                        <p class="my-2">Het eerstvolgende gereserveerde evenement is <strong>{{ substr($firstFutureReservation->event->date, 0, 2) }} {{ $firstFutureReservation->event->month }} {{ substr($firstFutureReservation->event->date, 6, 7) }} </strong></p>
+                        @else
+                        <p class="my-2"><em>Geen toekomstige reserveringen gevonden.</em></p>
+                    </span>
+                    @endif
+                </div>
+                <a  href="{{ route('view.reservation') }}" class="btn rounded-0 btn-primary">Meer Info</a>
             </div>
         </div>
     </div>
 
-</body>
+    <div class="content px-5 py-3 border" style="background-color: #f3f4f7">
+        <div class="container p-0 ">
+            <!-- <a href="" class="btn bg-info">+ New Event Toevoegen</a> -->
+            <div class="d-flex justify-content-between">
+                <div class="" style="max-width: 540px;">
+                    <h3 class="mb-3 border-bottom border-black fw-bolder mx-auto text-center pb-3">ExpiredReservations</h3>
+                    @forelse($expiredReservations as $reservation)
+                    @include('reservations.partials.reservation-list')
+                    @empty
+                    <p class="text-center">Geen reserveringen gevonden.</p>
+                    @endforelse
+                </div>
+                <div class="" style="max-width: 540px;">
+                    <h3 class="mb-3 border-bottom border-black fw-bolder mx-auto text-center pb-3">historicalReservations</h3>
+                    @forelse($historicalReservations as $reservation)
+                    @include('reservations.partials.reservation-list')
+                        @empty
+                    <p class="text-center">Geen reserveringen gevonden.</p>
+                    @endforelse
+                </div>
 
-</html>
+
+            </div>
+        </div>
+    </div>
+    @endsection

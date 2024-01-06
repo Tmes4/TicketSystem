@@ -20,7 +20,6 @@
                                 <div class="row text-center">
                                     <!-- <div class="col">FULL NAME <span class="d-block">Admin</span></div> -->
                                 </div>
-
                             </div>
                         </div>
                     </div>

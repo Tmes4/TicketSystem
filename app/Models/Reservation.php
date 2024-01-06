@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'user_id',
         'event_id',
@@ -29,5 +29,19 @@ class Reservation extends Model
     public function tickets()
     {
         return $this->hasMany(Ticket::class, 'reservations_id');
+    }
+
+    public function scopeUpcoming($query)
+    {
+        return $query->whereHas('event', function ($eventQuery) {
+            $eventQuery->where('date', '>=', now())->orderBy('date', 'ASC');
+        });
+    }
+
+    public function scopePast($query)
+    {
+        return $query->whereHas('event', function ($eventQuery) {
+            $eventQuery->where('date', '<', now())->orderBy('date', 'ASC');
+        });
     }
 }

@@ -1,0 +1,3 @@
+Reservations wordt niet gesorteerd bij datum
+futureReservations wordt deel gescand en in de factroy wordt aan gegeven dat als de reservation na -
+vandaag is dan moet niet gescand zijn.

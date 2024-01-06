@@ -6,7 +6,7 @@
     </div>
 </div>
 @foreach($events as $event)
-<div class="container py-4 mt-3 bg-white">
+<div class="container resve py-4 mt-3 bg-white">
     <div class="row row-cols- align-items-center">
         <div class="col d-flex align-items-center">
             <span><img class="custom-img-class rounded-pill me-3" src="{{ asset($event->imageUrl) }}" alt="" width="50" height="50"></span>

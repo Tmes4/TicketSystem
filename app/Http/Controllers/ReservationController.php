@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\Reservation;
 use App\Models\User;
 use App\Models\ticket;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,11 +24,43 @@ class ReservationController extends Controller
             ->with(compact('event'));
     }
 
+    public function view(Reservation $reservation)
+    {
+        $allReservations = Reservation::orderBy('user_id', 'ASC')->get();
+        $futureReservations = Reservation::upcoming()->get();
+        $passReservations = Reservation::past()->get();
+        // $upcomingReservations = Reservation::orderBy('user_id', 'ASC')->get();
+        // $passReservations = Reservation::orderBy('created_at', 'ASC')->get();;
+        return view('admin.reservations.viewReservations', compact('allReservations', 'futureReservations', 'passReservations'));
+    }
+
+
+
+    public function getAllReservations()
+    {
+        $allReservations = Reservation::orderBy('user_id', 'ASC')->get();
+        return response()->json(['html' => view('admin.reservations.partials.reservation-list', ['reservations' => $allReservations])->render()]);
+    }
+
+    public function getfutureReservations()
+    {
+        $futureReservations = Reservation::upcoming()->get();
+        return response()->json(['html' => view('admin.reservations.partials.reservation-list', ['reservations' => $futureReservations])->render()]);
+    }
+
+    public function getPassReservations()
+    {
+        $passReservations = Reservation::past()->orderBy('created_at', 'ASC')->get();
+        return response()->json(['html' => view('admin.reservations.partials.reservation-list', ['reservations' => $passReservations])->render()]);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
+        return view('admin.reservations.create');
     }
 
     /**
@@ -67,7 +100,7 @@ class ReservationController extends Controller
                 return redirect()->route('home')->with('error', 'Het evenement heeft niet genoeg capaciteit voor de geselecteerde tickets.');
             }
 
-            Mail::to(auth()->user()->email)->send(new ReservationConfirmation($reservation, $event));
+            // Mail::to(auth()->user()->email)->send(new ReservationConfirmation($reservation, $event));
 
             session()->put('reservedTickets', $reservedTickets);
 
@@ -82,7 +115,7 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Reservation $reservation,  $view = 'history')
+    public function show(Reservation $reservation)
     {
         // $user = Auth::user();
         $user = User::with('reservations')->find(auth()->user()->id);
@@ -114,7 +147,31 @@ class ReservationController extends Controller
             })
             ->get();
 
-        return view('reservations.index', compact('historicalReservations', 'expiredReservations', 'futureReservations', 'view'));
+        $firstFutureReservation = $user->reservations()
+            ->whereHas('tickets', function ($ticketQuery) {
+                $ticketQuery->where('is_scanned', 0);
+            })
+            ->whereHas('event', function ($eventQuery) {
+                $eventQuery->where('date', '>', now());
+            })
+            ->first();
+
+        return view('reservations.index', compact('historicalReservations', 'expiredReservations', 'futureReservations', 'firstFutureReservation'));
+    }
+
+    public function viewReservations()
+    {
+        $user = User::with('reservations')->find(auth()->user()->id);
+        $futureReservations = $user->reservations()
+        ->whereHas('tickets', function ($ticketQuery) {
+            $ticketQuery->where('is_scanned', 0);
+        })
+        ->whereHas('event', function ($eventQuery) {
+            $eventQuery->where('date', '>', now());
+        })
+        ->orderBy('date', 'ASC')
+        ->get();
+        return view('reservations.viewReservations', compact('futureReservations'));
     }
 
     /**
@@ -138,6 +195,7 @@ class ReservationController extends Controller
      */
     public function destroy(reservation $reservation)
     {
-        //
+        $reservation->delete();
+        return redirect()->back();
     }
 }

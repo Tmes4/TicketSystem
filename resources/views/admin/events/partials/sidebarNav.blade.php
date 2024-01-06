@@ -19,14 +19,12 @@
                     <i class="fa-regular fa-file-lines pe-2"></i>
                     Events
                 </a>
-                <!-- <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="" class="sidebar-link">Aankomende Events</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link">Afgelopen Events</a>
-                        </li>
-                    </ul> -->
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('view.reservations') }}" class="sidebar-link collapsed">
+                    <i class="fa-regular fa-file-lines pe-2"></i>
+                    Reservations
+                </a>
             </li>
             <li class="sidebar-item">
                 <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard" aria-expanded="false" aria-controls="dashboard">

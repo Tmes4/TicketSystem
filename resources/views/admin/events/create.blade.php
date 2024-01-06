@@ -1,59 +1,65 @@
 @extends('layouts.App')
 
 @section('content')
-<div class="wrapper" style="background-color: #f3f4f7;">
+<div class="wrapper">
     @include('admin.events.partials.sidebarNav')
 
-    <div class="container pt-5" style="width:960px ;">
-        <form action="{{ route('save.event') }}" method="POST" style="min-width: 320px;" enctype="multipart/form-data">
+    <div class="new-container">
+        <form action="{{ route('save.event') }}" method="POST" enctype="multipart/form-data" class="new-form">
 
-            <h4>Nieuw Event</h4>
+            <h4 class="new-heading">Nieuw Event</h4>
 
-            <div class="form-group">
+            <div class="new-form-group">
                 <label for="title">Titel</label>
-                <input type="text" id="title" name="title" class="form-control" value="">
+                <input type="text" id="title" name="title" class="new-input" value="">
             </div>
 
-            <div class="form-group">
-                <label for="location">Locatie</label>
-                <input type="text" id="location" name="location" class="form-control" value="">
-            </div>
+            <!-- Flex-container voor de inputvelden -->
+            <div class="new-flex-container">
 
-            <div class="form-group">
-                <label for="time">Tijd</label>
-                <input type="time" id="time" name="time" class="form-control" value="">
-            </div>
-
-            <div class="form-group">
-                <label for="date">Datum</label>
-                <input type="date" id="date" name="date" class="form-control" value="">
-            </div>
-
-            <div class="form-group">
-                <label for="price">Prijs</label>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">&euro;</div>
-                    </div>
-                    <input type="number" min="0" id="price" name="price" class="form-control" value="">
+                <div class="new-form-group new-flex-item">
+                    <label for="time">Tijd</label>
+                    <input type="time" id="time" name="time" class="new-input" value="">
                 </div>
+
+                <div class="new-form-group new-flex-item">
+                    <label for="date">Datum</label>
+                    <input type="date" id="date" name="date" class="new-input" value="">
+                </div>
+
             </div>
 
-            <div class="form-group">
-                <label for="image"></label>
-                <input type="file" id="image" name="image" accept="image/png, image/jpeg, image/gif">
+            <div class="new-flex-container">
+                <div class="new-form-group new-flex-item">
+                    <label for="location">Locatie</label>
+                    <input type="text" id="location" name="location" class="new-input" value="">
+                </div>
+
+                <div class="new-form-group">
+                    <label for="price">Prijs</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                        </div>
+                        <input type="number" min="0" id="price" name="price" class="new-input" value="">
+                    </div>
+                </div>
+
             </div>
 
-            <div class="form-group">
+            <div class="new-form-group">
+                <label for="image">Afbeelding</label>
+                <input type="file" id="image" name="image" accept="image/png, image/jpeg, image/gif" class="new-file-input">
+            </div>
+
+            <div class="new-form-group">
                 <label for="description">Beschrijving</label>
-                <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
+                <textarea name="description" id="description" cols="30" rows="5" class="new-textarea"></textarea>
             </div>
 
-            <button type="submit" class="form-control btn btn-primary my-2">Opslaan</button>
+            <button type="submit" class="new-btn">Opslaan</button>
+
             {{ csrf_field() }}
         </form>
     </div>
 </div>
-</div>
-
 @endsection

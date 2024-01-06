@@ -28,6 +28,7 @@ protected $routeMiddleware = [
     // ...
     'admin' => \App\Http\Middleware\AdminMiddleware::class,
     'custom.auth' => \App\Http\Middleware\Authenticate::class,
+    'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
 ];
 
 

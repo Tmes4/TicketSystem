@@ -7,6 +7,7 @@ use App\Models\Ticket;
 use App\Models\reservation;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
+
 class TicketController extends Controller
 {
     /**
@@ -38,7 +39,7 @@ class TicketController extends Controller
         //     'ticket_quantity' => 'required|integer|min:1',
         //     'ticket_type' => 'required|in:standard,vip',
         // ]);
-        $this->validate(request(),[
+        $this->validate(request(), [
             'ticket_quantity' => 'required|numeric|min:1',
         ]);
 
@@ -56,7 +57,6 @@ class TicketController extends Controller
      */
     public function show(ticket $ticket, Event $event)
     {
-        
     }
 
     /**
@@ -70,9 +70,16 @@ class TicketController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ticket $ticket)
+    public function update(Request $request, Ticket $ticket)
     {
-        //
+        $request->validate([
+            'is_scanned' => 'boolean',
+        ]);
+        // dd($ticket->is_scanned);
+        // $ticket->update(['is_scanned' => $request->input('is_scanned')]);
+        $ticket->update(['is_scanned' => !$ticket->is_scanned]);
+
+        return redirect()->back();
     }
 
     /**
@@ -82,6 +89,16 @@ class TicketController extends Controller
     {
         //
     }
+
+    // TicketController.php
+
+    public function changeScanStatus(Ticket $ticket)
+    {
+        $ticket->update(['is_scanned' => !$ticket->is_scanned]);
+
+        return response()->json(['is_scanned' => $ticket->is_scanned]);
+    }
+
 
     // public function download()
     // {

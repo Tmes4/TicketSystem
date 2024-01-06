@@ -156,11 +156,11 @@ main {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #0075ff;
+    background-color: #424649;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #3175c3;
+    background-color: #212529;
 }
 
 .page {
@@ -439,85 +439,7 @@ main {
 
 .custom-list-item .badge {
     margin-left: 10px;
-    /* Aangepaste marge voor de badge */
     font-size: 1.2rem;
-    /* Aangepaste lettergrootte voor de badge */
-}
-
-/* public/css/reservations.css */
-
-.header-reservations {
-    background-color: #3498db;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-}
-
-.reservation-main {
-    margin: 20px;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.reservation-main h1 {
-    font-size: 2em;
-}
-
-.reservation-main h2 {
-    font-size: 1.5em;
-    margin-top: 30px;
-    color: #3498db;
-}
-
-.reservation-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.reservation {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    transition: transform 0.3s ease-in-out;
-}
-
-.past-reservation {
-    border: 2px solid #ddd;
-}
-
-.future-reservation {
-    border: 2px solid #4caf50;
-}
-
-.reservation:hover {
-    transform: scale(1.05);
-}
-
-.reservation h3 {
-    color: #3498db;
-    margin-bottom: 10px;
-}
-
-.reservation p {
-    margin: 8px 0;
-}
-
-.check {
-    color: #4caf50;
-    font-size: 24px;
-    margin-top: 10px;
-}
-
-.scanned .check {
-    display: block;
-}
-
-.check {
-    display: none;
 }
 
 // EVENT ADMIN START
@@ -579,8 +501,145 @@ main {
 }
 
 .scrollable-view {
-    max-height: 100vh; /* Pas dit aan op basis van de gewenste hoogte voor de scrollbare weergave */
+    max-height: 100vh;
+    /* Pas dit aan op basis van de gewenste hoogte voor de scrollbare weergave */
     overflow-y: auto;
-    padding-right: 10px; /* Voeg wat ruimte aan de rechterkant van de scroller toe */
+    padding-right: 10px;
+    /* Voeg wat ruimte aan de rechterkant van de scroller toe */
     /* Je kunt ook padding-left, padding-top, of padding-bottom toevoegen, afhankelijk van je ontwerpbehoeften */
 }
+
+
+// Create Event
+
+.new-wrapper {
+    background-color: #f3f4f7;
+}
+
+.new-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.new-form {
+    min-width: 320px;
+}
+
+.new-heading {
+    color: #333333;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.new-flex-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.new-flex-item {
+    flex: 0 0 48%;
+}
+
+.new-form-group {
+    margin-bottom: 20px;
+}
+
+.new-input,
+.new-file-input,
+.new-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+.new-file-input {
+    padding: 10px 0;
+}
+
+.new-btn {
+    padding: 10px;
+    color: #ffffff;
+    background-color: #424649;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.new-btn:hover {
+    background-color: #212529;
+}
+
+// scanned button
+
+/* Aangepaste stijlen voor de weergave */
+.resve {
+    border: 1px solid #ddd; /* Voeg een rand toe aan de container voor scheiding */
+    border-radius: 8px; /* Maak de hoeken enigszins afgerond */
+    margin-bottom: 20px; /* Voeg wat ruimte toe onder elke container */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Voeg een lichte schaduw toe voor diepte */
+}
+
+.row-cols- {
+    margin: 0 -8px; /* Corrigeer de marge voor een volledige breedte van de rij */
+}
+
+// slider
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Verberg het oorspronkelijke checkbox-element */
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Stijl voor het slider-achtige uiterlijk */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+/* Stijl voor de slider als de schakelaar is ingeschakeld */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+/* Voeg een klasse toe aan de slider als de checkbox is aangevinkt */
+.toggle-switch input:checked + .slider {
+    background-color: #025002;
+}
+
+/* Verschuif de slider naar rechts als de checkbox is aangevinkt */
+.toggle-switch input:checked + .slider:before {
+    transform: translateX(26px);
+}
+

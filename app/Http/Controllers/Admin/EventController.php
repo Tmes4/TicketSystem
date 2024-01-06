@@ -15,10 +15,16 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
-        $upComingEvents = Event::where('date', '>=', Carbon::today())->orderby("date")->get();
+        $allEvents = Event::orderBy('date', 'asc')->get();
+        $upComingEvents = Event::where('date', '>=', Carbon::now())->orderby("date")->get();
         $passEvents = Event::where('date', '<', Carbon::today())->orderby("date")->get();
-        return view('admin.events.viewEvents', compact('upComingEvents', 'passEvents', 'events'));
+        return view('admin.events.viewEvents', compact('upComingEvents', 'passEvents', 'allEvents'));
+    }
+
+    public function getAllEvents()
+    {
+        $allEvents = Event::orderBy('date', 'asc')->get();
+        return response()->json(view('admin.events.partials.event-list', ['events' => $allEvents])->render());
     }
 
     public function getUpcomingEvents()
