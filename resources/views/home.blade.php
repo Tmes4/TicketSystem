@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- <img class="bg-img" src="" alt=""> -->
-<div class="container">
+<div class="container pt-4">
     @if(session('error'))
         <div class="alert alert-danger" >
             {{ session('error') }}

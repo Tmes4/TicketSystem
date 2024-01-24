@@ -11,6 +11,7 @@ use App\Models\ticket;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class ReservationController extends Controller
 {
@@ -163,14 +164,14 @@ class ReservationController extends Controller
     {
         $user = User::with('reservations')->find(auth()->user()->id);
         $futureReservations = $user->reservations()
-        ->whereHas('tickets', function ($ticketQuery) {
-            $ticketQuery->where('is_scanned', 0);
-        })
-        ->whereHas('event', function ($eventQuery) {
-            $eventQuery->where('date', '>', now());
-        })
-        ->orderBy('date', 'ASC')
-        ->get();
+            ->whereHas('tickets', function ($ticketQuery) {
+                $ticketQuery->where('is_scanned', 0);
+            })
+            ->whereHas('event', function ($eventQuery) {
+                $eventQuery->where('date', '>', now());
+            })
+            // ->orderBy('date', 'ASC')
+            ->get();
         return view('reservations.viewReservations', compact('futureReservations'));
     }
 
@@ -188,6 +189,33 @@ class ReservationController extends Controller
     public function update(Request $request, reservation $reservation)
     {
         //
+    }
+
+    // public function downloadPdf($id)
+    // {
+    //     $reservation = Reservation::with('tickets', 'events');
+    //     $ticketNumbers = $reservation->tickets->id;
+
+
+
+    //     $pdf = PDF::loadView('reservations.pdf', ['tickets' => $reservation->tickets,  'events' => $reservation->events , 'ticketNumbers' => $ticketNumbers]);
+
+    //     return $pdf->download('reservations.pdf');
+    // }
+
+    public function downloadPdf($id)
+    {
+        $reservation = Reservation::with(['tickets', 'event'])->findOrFail($id);
+        $ticketNumbers = $reservation->tickets->pluck('id');
+
+        $pdf = PDF::loadView('reservations.pdf', [
+            'tickets' => $reservation->tickets,
+            'ticketNumbers' => $ticketNumbers,
+            'event' => $reservation->event // Voeg de evenementgegevens toe
+
+        ]);
+
+        return $pdf->download('reservations.pdf');
     }
 
     /**

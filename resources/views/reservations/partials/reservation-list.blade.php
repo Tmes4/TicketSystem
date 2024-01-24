@@ -22,7 +22,7 @@
                 <div>
                     <h3 class=""><strong>&euro;{{ $reservation->event->price }}</strong></h3>
                 </div>
-                <div> <a href="#" class="btn px-5" style="background-color: #14d75f;">Downlaod</a>
+                <div> <a href="{{ route('reservation.pdf', $reservation->id) }}" class="btn px-5" style="background-color: #14d75f;">Downlaod</a>
                 </div>
             </div>
         </div>

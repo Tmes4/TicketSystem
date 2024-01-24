@@ -72,9 +72,9 @@ class TicketController extends Controller
      */
     public function update(Request $request, Ticket $ticket)
     {
-        $request->validate([
-            'is_scanned' => 'boolean',
-        ]);
+        // $request->validate([
+        //     'is_scanned' => 'boolean',
+        // ]);
         // dd($ticket->is_scanned);
         // $ticket->update(['is_scanned' => $request->input('is_scanned')]);
         $ticket->update(['is_scanned' => !$ticket->is_scanned]);
@@ -92,39 +92,12 @@ class TicketController extends Controller
 
     // TicketController.php
 
-    public function changeScanStatus(Ticket $ticket)
-    {
-        $ticket->update(['is_scanned' => !$ticket->is_scanned]);
-
-        return response()->json(['is_scanned' => $ticket->is_scanned]);
-    }
-
-
-    // public function download()
+    // public function changeScanStatus(Ticket $ticket)
     // {
-    //     // Logica om tickets te downloaden
+    //     $ticket->update(['is_scanned' => !$ticket->is_scanned]);
 
-    //     // Bijvoorbeeld, een eenvoudige respons
-    //     return response()->download(public_path('path/to/tickets.zip'));
+    //     return response()->json(['is_scanned' => $ticket->is_scanned]);
     // }
 
-    // public function download($reservationId)
-    // {
-    //     $reservation = Reservation::findOrFail($reservationId);
 
-    //     // View voor de PDF
-    //     $html = view('pdf.tickets')->with('reservation', $reservation)->render();
-
-    //     // Maak een nieuwe PDF-instantie aan
-    //     $dompdf = new Dompdf();
-
-    //     // Voeg de HTML-inhoud toe aan de PDF
-    //     $dompdf->loadHtml($html);
-
-    //     // Render de PDF
-    //     $dompdf->render();
-
-    //     // Download de PDF met een specifieke bestandsnaam
-    //     return $dompdf->stream('ticket.pdf');
-    // }
 }

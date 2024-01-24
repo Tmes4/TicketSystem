@@ -61,10 +61,11 @@ Route::middleware(['middleware' => 'auth'])->group(function () {
     Route::post('/tickets/create/{event}', [ReservationController::class, 'store'])->name('ticket.store');
     Route::get('/tickets/confirm', [TicketController::class, 'index'])->name('ticket.confirm');
     Route::get('/tickets/{event}', [TicketController::class, 'show'])->name('ticket.show');
-    Route::get('/download-tickets', [TicketController::class, 'download'])->name('download.tickets');
+    Route::get('/reservation/{id}/pdf',[ReservationController::class, 'downloadPdf'])->name('reservation.pdf');
+        // Route::get('/download-tickets', [TicketController::class, 'download'])->name('download.tickets');
 });
 
-Route::get('/generate-pdf', 'PDFController@generate');
+// Route::get('/generate-pdf', 'PDFController@generate');
 
 // Route::middleware(['guest'])->get('/', function () {
 //     return view('home');

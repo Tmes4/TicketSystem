@@ -2,7 +2,7 @@
 @section('content')
 <div class="wrapper" style="background-color: #f3f4f7;">
     @include('admin.events.partials.sidebarNav')
-    <div class="container py-5">
+    <div class="container resve py-4">
         <div class="event-content pt-2">
             <div class="d-grid gap-2 d-md-flex justify-content-md-between">
                 <button class="custom-btn all-btn me-md-2 px-5 border border-dark rounded-pill" onclick="changeBackground('all-btn')" role="button">ALL Reservations</button>
